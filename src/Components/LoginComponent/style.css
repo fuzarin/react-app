@@ -1,0 +1,14 @@
+.formLogin {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ border: 1px solid rgba(0, 0, 0, 0.486);
+ padding: 25px;
+ border-radius: 15px;
+}
+
+.loginTitle {
+ margin: 0;
+}

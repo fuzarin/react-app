@@ -1,0 +1,26 @@
+.headerStyle {
+ padding: 0px 50px;
+ display: flex !important;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.header {
+ border-bottom: 1px solid #00000045;
+}
+
+.headerName h1 {
+ margin: 0;
+}
+
+.logoutBoxButton {
+ height: 64px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.cardContainer {
+ display: flex !important;
+ justify-content: space-between;
+}
