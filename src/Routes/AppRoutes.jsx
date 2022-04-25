@@ -1,60 +1,42 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress";
+import Login from "../Pages/Login";
+import Dashboard from "../Pages/Dashboard";
+import Heroes from "../Pages/Heroes";
+import PrivateRoute from "./PrivateRoute";
 
-import LoginComponent from "../Components/LoginComponent/loginComponent";
-import DashboardComponent from "../Components/DashboardComponent/dashboardComponent";
-
-import { AuthProvider, AuthContext } from "../Context/Auth";
-import HeroesComponent from "../Components/HeroesComponent/HeroesComponent";
-import NavBarComponent from "../Components/NavBarComponent/NavBar";
-
-export default function AppRoutes() {
-  const Private = ({ children }) => {
-    const { authenticated, loading } = useContext(AuthContext);
-
-    if (loading) {
-      return <CircularProgress />;
-    }
-
-    if (!authenticated) {
-      return <Navigate to="/" />;
-    }
-
-    return children;
-  };
-
+const AppRoutes = () => {
   return (
-    <Router>
-      <AuthProvider>
-      <NavBarComponent />
-        <Routes>
-          <Route exact path="/" element={<LoginComponent />} />
-          <Route
-            exact
-            path="/dashboard"
-            element={
-              <Private>
-                <DashboardComponent />
-              </Private>
-            }
-          />
-          <Route
-            exact
-            path="/heroes/:attr"
-            element={
-              <Private>
-                <HeroesComponent />
-              </Private>
-            }
-          />
-        </Routes>
-      </AuthProvider>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Navigate to="/login" />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route
+          exact
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/heroes/:attr"
+          element={
+            <PrivateRoute>
+              <Heroes />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+export default AppRoutes;

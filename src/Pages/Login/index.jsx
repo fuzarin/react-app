@@ -1,27 +1,42 @@
-import React, { useState, useContext } from "react";
-
+import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import "./style.css";
-import { AuthContext } from '../../Context/Auth';
+import { login } from "../../auth";
+import { makeStyles } from "@material-ui/styles";
 
-export default function LoginComponent() {
+const useStyles = makeStyles((theme) => ({
+  textField: {
+    border: "1px solid white",
+    borderRadius: "4px",
+    color: 'white'
+  },
+}));
 
-  const [userName, setUserName] = useState("");
+const Login = () => {
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(userName, password);
+
+    const userData = { name, password };
+
+    login(userData);
   };
 
-  const { login } = useContext(AuthContext);
-
   return (
-    <Container maxWidth="sm" sx={{ pt: 5 }}>
-      <form className="formLogin">
+    <Container className="boxLogin" maxWidth="sm" sx={{ pt: 5 }}>
+      <img
+        className="logo"
+        src="../../../assets/png/logo.png"
+        alt="Dota 2 Logo"
+      />
+      <form className="formLogin" onSubmit={handleSubmit}>
         <Box
           sx={{
             width: "100%",
@@ -31,11 +46,12 @@ export default function LoginComponent() {
           }}
         >
           <TextField
+            className={classes.textField}
             sx={{ width: "100%", mt: 2, mb: 1 }}
             id="user"
             label="Usuário"
             variant="outlined"
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         </Box>
         <Box
@@ -47,6 +63,7 @@ export default function LoginComponent() {
           }}
         >
           <TextField
+            className={classes.textField}
             sx={{ width: "100%", mt: 1, mb: 2 }}
             id="password"
             label="Senha"
@@ -63,15 +80,13 @@ export default function LoginComponent() {
             alignItems: "center",
           }}
         >
-          <Button
-            onClick={handleSubmit}
-            sx={{ width: "100%" }}
-            variant="contained"
-          >
+          <Button className="buttonLogin" type="submit" sx={{ width: "100%" }} variant="contained">
             Entrar
           </Button>
         </Box>
       </form>
     </Container>
   );
-}
+};
+
+export default Login;

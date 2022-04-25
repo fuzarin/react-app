@@ -3,11 +3,15 @@ import { DataGrid } from "@mui/x-data-grid";
 import api from "../../services/api";
 import _map from "lodash/map";
 import _filter from "lodash/filter";
-import {useParams} from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import AppHeader from "../../Components/AppHeader";
+import "./style.css";
+import Typography from "@mui/material/Typography";
 
-const HeroesComponent = () => {
+const Heroes = () => {
   const [heroes, setHeroes] = useState();
-  const {attr} = useParams();
+  const [attrHeroes, setAttrHeroes] = useState();
+  const { attr } = useParams();
 
   const mappedHeroes = (data) => {
     return _map(data, (item) => ({
@@ -19,8 +23,20 @@ const HeroesComponent = () => {
     }));
   };
 
+  useEffect(() => {
+    if(attr === 'str') {
+      setAttrHeroes('Força')
+    } else if(attr === 'agi') {
+      setAttrHeroes('Agilidade')
+    } else if(attr === 'int') {
+      setAttrHeroes('Inteligência')
+    }
+  }, [attr])
+
   const filteredHeroes = (heroes, attribute) =>
     _filter(heroes, (item) => item.attribute === attribute);
+
+    console.log(attr);
 
   useEffect(() => {
     api
@@ -39,40 +55,45 @@ const HeroesComponent = () => {
     {
       field: "name",
       headerName: "Nome do Herói",
-      width: 460,
-      editable: true,
+      minWidth: 150,
     },
     {
       field: "attribute",
       headerName: "Atributo Primário",
-      width: 460,
-      editable: true,
+      minWidth: 150,
     },
     {
       field: "attackType",
       headerName: "Tipo de Ataque",
-      width: 460,
-      editable: true,
+      minWidth: 150,
     },
     {
       field: "roles",
       headerName: "Funções",
-      width: 460,
-      editable: true,
+      minWidth: 150,
+      flex: 1,
     },
   ];
 
   return (
     <div style={{ height: 400, width: "100%" }}>
+      <Typography className="headerMessage" variant="h4" component="h2">
+        Heróis - {attrHeroes}
+      </Typography>
+      <Typography className="headerDescription" variant="h6" component="h2">
+        Listagem de heróis de {attrHeroes}.
+      </Typography>
+      <AppHeader />
       <DataGrid
         rows={heroes || []}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         disableSelectionOnClick
-      />
+        sx={{color: 'white'}}
+        />
     </div>
   );
 };
 
-export default HeroesComponent;
+export default Heroes;

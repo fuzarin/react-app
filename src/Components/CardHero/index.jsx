@@ -5,8 +5,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import "./style.css"
 
-const CardComponent = ({ attribute, onClick }) => {
+const CardHero = ({ attribute, onClick }) => {
   const cardConfig = {
     agi: {
       name: "Agilidade",
@@ -31,7 +32,7 @@ const CardComponent = ({ attribute, onClick }) => {
     },
   };
   return (
-    <Card sx={{ width: 350 }}>
+    <Card className="boxCardHero" sx={{ width: 330 }}>
       <CardMedia
         component="img"
         height="140"
@@ -39,20 +40,20 @@ const CardComponent = ({ attribute, onClick }) => {
         alt={cardConfig[attribute].name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {cardConfig[attribute].name}
+        <Typography className="textCardHero" gutterBottom variant="h5" component="div">
+          <strong>{cardConfig[attribute].name}</strong>
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography className="textCardHero" variant="body2" color="text.secondary">
           {cardConfig[attribute].description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={onClick} size="small">
-          Leia Mais +
+        <Button onClick={onClick} className="buttonSeeMore" variant="outlined" size="small">
+          Ver Heróis
         </Button>
       </CardActions>
     </Card>
   );
 };
 
-export default CardComponent;
+export default CardHero;
