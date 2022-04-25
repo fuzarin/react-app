@@ -31,3 +31,12 @@
 .buttonLogin {
  background-color: #b5211a !important
 }
+
+.MuiInputLabel-root,.MuiOutlinedInput-input {
+ color: white !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+ border-color: white !important;
+ color: white !important
+}
