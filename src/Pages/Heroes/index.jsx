@@ -80,7 +80,7 @@ const Heroes = () => {
       <Typography className="headerMessage" variant="h4" component="h2">
         Heróis - {attrHeroes}
       </Typography>
-      <Typography className="headerDescription" variant="h6" component="h2">
+      <Typography className="headerDescription" variant="subtitle1" component="h2">
         Listagem de heróis de {attrHeroes}.
       </Typography>
       <AppHeader />

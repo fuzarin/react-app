@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <Container fixed>
-        <Typography variant="h6" component="h2">
+        <Typography variant="body1" component="h2">
           Todos os direitos reservados a OpenDota.
         </Typography>
       </Container>

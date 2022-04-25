@@ -36,7 +36,7 @@ const Dashboard = () => {
       <Typography className="headerMessage" variant="h4" component="h2">
         Olá, {userName}! Seja bem-vindo ao OpenDota.
       </Typography>
-      <Typography className="headerDescription" variant="h6" component="h2">
+      <Typography className="headerDescription" variant="subtitle1" component="h2">
         Aqui, trazemos para você todos os heróis do jogo Dota 2 filtrados por suas habilidades primárias.
       </Typography>
       {_map(attributes, (item) => (

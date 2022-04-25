@@ -7,3 +7,11 @@
  padding: 5px 0px 15px 0px;
  color: white
 }
+
+.MuiTablePagination-root {
+ color: white !important;
+}
+
+.MuiButtonBase-root .MuiSvgIcon-root {
+ color: white !important;
+}
