@@ -4,7 +4,6 @@ import api from "../../services/api";
 import _map from "lodash/map";
 import _filter from "lodash/filter";
 import { useParams } from "react-router-dom";
-import AppHeader from "../../Components/AppHeader";
 import "./style.css";
 import Typography from "@mui/material/Typography";
 
@@ -83,7 +82,6 @@ const Heroes = () => {
       <Typography className="headerDescription" variant="subtitle1" component="h2">
         Listagem de heróis de {attrHeroes}.
       </Typography>
-      <AppHeader />
       <DataGrid
         rows={heroes || []}
         columns={columns}
