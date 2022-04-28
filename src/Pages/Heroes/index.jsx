@@ -12,6 +12,8 @@ const Heroes = () => {
   const [attrHeroes, setAttrHeroes] = useState();
   const { attr } = useParams();
 
+
+
   const mappedHeroes = (data) => {
     return _map(data, (item) => ({
       id: item.id,
@@ -23,13 +25,13 @@ const Heroes = () => {
   };
 
   useEffect(() => {
-    if(attr === 'str') {
-      setAttrHeroes('Força')
-    } else if(attr === 'agi') {
-      setAttrHeroes('Agilidade')
-    } else if(attr === 'int') {
-      setAttrHeroes('Inteligência')
-    }
+    const newAttr = {
+      str: 'Força',
+      agi: 'Agilidade',
+      int: 'Inteligência'
+    };
+
+    setAttrHeroes(newAttr[attr])
   }, [attr])
 
   const filteredHeroes = (heroes, attribute) =>
