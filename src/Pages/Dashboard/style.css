@@ -4,14 +4,6 @@
  justify-content: space-between;
 }
 
-.dashboardContainer h2 {
- width: 100%;
-}
-
-.userNameMessage {
- width: 100%;
-}
-
 .headerMessage {
  padding: 15px 0px 5px 0px;
  color: white

@@ -12,8 +12,6 @@ const Heroes = () => {
   const [attrHeroes, setAttrHeroes] = useState();
   const { attr } = useParams();
 
-
-
   const mappedHeroes = (data) => {
     return _map(data, (item) => ({
       id: item.id,
@@ -26,20 +24,13 @@ const Heroes = () => {
 
   useEffect(() => {
     const newAttr = {
-      str: 'Força',
-      agi: 'Agilidade',
-      int: 'Inteligência'
+      str: "Força",
+      agi: "Agilidade",
+      int: "Inteligência",
     };
 
-    setAttrHeroes(newAttr[attr])
-  }, [attr])
+    setAttrHeroes(newAttr[attr]);
 
-  const filteredHeroes = (heroes, attribute) =>
-    _filter(heroes, (item) => item.attribute === attribute);
-
-    console.log(attr);
-
-  useEffect(() => {
     api
       .get("/heroStats")
       .then((res) => {
@@ -51,6 +42,11 @@ const Heroes = () => {
         console.log("error -> ", err);
       });
   }, [attr]);
+
+  console.log(heroes);
+
+  const filteredHeroes = (heroes, attribute) =>
+    _filter(heroes, (item) => item.attribute === attribute);
 
   const columns = [
     {
@@ -81,7 +77,11 @@ const Heroes = () => {
       <Typography className="headerMessage" variant="h4" component="h2">
         Heróis - {attrHeroes}
       </Typography>
-      <Typography className="headerDescription" variant="subtitle1" component="h2">
+      <Typography
+        className="headerDescription"
+        variant="subtitle1"
+        component="h2"
+      >
         Listagem de heróis de {attrHeroes}.
       </Typography>
       <DataGrid
@@ -90,8 +90,8 @@ const Heroes = () => {
         pageSize={5}
         rowsPerPageOptions={[5]}
         disableSelectionOnClick
-        sx={{color: 'white'}}
-        />
+        sx={{ color: "white" }}
+      />
     </div>
   );
 };

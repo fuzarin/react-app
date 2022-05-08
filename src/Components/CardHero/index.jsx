@@ -32,7 +32,7 @@ const CardHero = ({ attribute, onClick }) => {
     },
   };
   return (
-    <Card className="boxCardHero" sx={{ width: 330 }}>
+    <Card className="boxCardHero" sx={{width: '320px'}}>
       <CardMedia
         component="img"
         height="140"

@@ -9,8 +9,10 @@ import Login from "../Pages/Login";
 import Dashboard from "../Pages/Dashboard";
 import Heroes from "../Pages/Heroes";
 import PrivateRoute from "./PrivateRoute";
+import Players from "../Pages/Players";
 
 const AppRoutes = () => {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -33,6 +35,15 @@ const AppRoutes = () => {
               <Heroes />
             </PrivateRoute>
           }
+        />
+        <Route 
+        exact
+        path="/players"
+        element={
+          <PrivateRoute>
+            <Players />
+          </PrivateRoute>
+        }
         />
       </Routes>
     </BrowserRouter>
