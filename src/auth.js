@@ -22,6 +22,11 @@ export const login = (userData) => {
  }
 }
 
+export const register = (userDataRegister) => {
+ userList.push(userDataRegister);
+ window.location.replace('/login');
+}
+
 export const logout = () => {
  localStorage.removeItem('accessToken');
  window.location.replace('/');

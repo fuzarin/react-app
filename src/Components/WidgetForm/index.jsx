@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 import FeedBackTypeStep from "./Steps/FeedBackTypeStep";
 import FeedBackContentStep from "./Steps/FeedbackContent";
@@ -35,32 +35,42 @@ const WidgetForm = ({ toggleWidgetVisibility }) => {
     setFeedBackType(null);
   };
 
+  const feedBackComponent = useMemo(() => {
+    if (feedBackSent) {
+      return (
+        <FeedBackSuccessStep
+          onFeedBackRestartRequested={handleFeedBackRestart}
+          toggleWidgetVisibility={toggleWidgetVisibility}
+        />
+      );
+    }
+
+    if (!feedBackType) {
+      return (
+        <FeedBackTypeStep
+          toggleWidgetVisibility={toggleWidgetVisibility}
+          feedBackTypes={feedBackTypes}
+          setFeedBackType={setFeedBackType}
+        />
+      );
+    }
+
+    return (
+      <FeedBackContentStep
+        onFeedBackSent={() => setFeedBackSent(true)}
+        handleFeedBackRestart={handleFeedBackRestart}
+        feedBackTypes={feedBackTypes}
+        feedBackType={feedBackType}
+        toggleWidgetVisibility={toggleWidgetVisibility}
+      />
+    );
+  }, [feedBackSent, feedBackType, toggleWidgetVisibility]);
+
   return (
     <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto text-white">
-      {feedBackSent ? (
-        <FeedBackSuccessStep onFeedBackRestartRequested={handleFeedBackRestart} toggleWidgetVisibility={toggleWidgetVisibility}/>
-      ) : (
-        <>
-          {!feedBackType ? (
-            <FeedBackTypeStep
-              toggleWidgetVisibility={toggleWidgetVisibility}
-              feedBackTypes={feedBackTypes}
-              setFeedBackType={setFeedBackType}
-            />
-          ) : (
-            <FeedBackContentStep
-              onFeedBackSent={() => setFeedBackSent(true)}
-              handleFeedBackRestart={handleFeedBackRestart}
-              feedBackTypes={feedBackTypes}
-              feedBackType={feedBackType}
-              toggleWidgetVisibility={toggleWidgetVisibility}
-            />
-          )}
-        </>
-      )}
-
+      {feedBackComponent}
       <footer className="text-xs text-neutral-400">
-        Feito pela{" "}
+        Desenvolvido pela{" "}
         <a
           href="https://www.opendota.com/"
           target="_blank"

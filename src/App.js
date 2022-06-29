@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div>
       <Widget />
-      <AppRoutes />;
+      <AppRoutes />
     </div>
   );
 };

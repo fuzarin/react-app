@@ -3,45 +3,40 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import "./style.css";
-import { login } from "../../auth";
 import { makeStyles } from "@material-ui/styles";
+import './style.css';
+import { register } from "../../auth";
 
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    border: "1px solid white",
-    borderRadius: "4px",
-    color: 'white'
-  },
-}));
-
-const Login = () => {
+const RegisterComponent = () => {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const userData = { name, password };
+    const userDataRegister = { name, email, password };
 
-    login(userData);
+    register(userDataRegister);
   };
 
-  const goToRegister = (e) => {
-    e.preventDefault();
-    window.location.replace('/register');
-  }
+  const useStyles = makeStyles((theme) => ({
+    textField: {
+      border: "1px solid white",
+      borderRadius: "4px",
+      color: "white",
+    },
+  }));
 
+  const classes = useStyles();
   return (
-    <Container className="boxLogin" maxWidth="sm" sx={{ pt: 5 }}>
-      <img
+    <Container className="boxRegister" maxWidth="sm" sx={{ pt: 5 }}>
+     <img
         className="logo"
         src="../../../assets/png/logo.png"
         alt="Dota 2 Logo"
       />
-      <form className="formLogin" onSubmit={handleSubmit}>
+      <form className="formRegister" onSubmit={handleSubmit}>
         <Box
           sx={{
             width: "100%",
@@ -53,12 +48,31 @@ const Login = () => {
           <TextField
             className={classes.textField}
             sx={{ width: "100%", mt: 2, mb: 1 }}
-            id="user"
-            label="Usuário"
+            id="name"
+            label="Seu Nome"
             variant="outlined"
             onChange={(e) => setName(e.target.value)}
           />
         </Box>
+
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <TextField
+            className={classes.textField}
+            sx={{ width: "100%", mt: 2, mb: 1 }}
+            id="email"
+            label="Seu email"
+            variant="outlined"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Box>
+
         <Box
           sx={{
             width: "100%",
@@ -71,9 +85,8 @@ const Login = () => {
             className={classes.textField}
             sx={{ width: "100%", mt: 1, mb: 2 }}
             id="password"
-            label="Senha"
+            label="Sua Senha"
             variant="outlined"
-            type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Box>
@@ -85,20 +98,8 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Button className="buttonLogin" type="submit" sx={{ width: "100%" }} variant="contained">
-            Entrar
-          </Button>
-        </Box>
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Button className="register" onClick={goToRegister} sx={{ width: "100%", mt: 2, mb: 1 }} variant="contained">
-            Cadastre-se
+          <Button className="buttonRegister" type="submit" sx={{ width: "100%" }} variant="contained">
+            Cadastrar
           </Button>
         </Box>
       </form>
@@ -106,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RegisterComponent;

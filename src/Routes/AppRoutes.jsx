@@ -10,14 +10,15 @@ import Dashboard from "../Pages/Dashboard";
 import Heroes from "../Pages/Heroes";
 import PrivateRoute from "./PrivateRoute";
 import Players from "../Pages/Players";
+import RegisterComponent from "../Pages/Register";
 
 const AppRoutes = () => {
-
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Navigate to="/login" />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<RegisterComponent />} />
         <Route
           exact
           path="/dashboard"

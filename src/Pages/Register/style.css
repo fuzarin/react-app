@@ -1,0 +1,24 @@
+.formRegister {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ border: 1px solid white;
+ padding: 25px;
+ border-radius: 15px;
+}
+
+.boxRegister {
+ display: flex !important;
+ flex-wrap: wrap;
+ justify-content: center;
+}
+
+.boxRegister .logo {
+ max-width: 250px
+}
+
+.buttonRegister {
+ background-color: #b5211a !important
+}
