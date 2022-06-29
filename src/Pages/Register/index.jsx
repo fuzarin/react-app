@@ -87,6 +87,7 @@ const RegisterComponent = () => {
             id="password"
             label="Sua Senha"
             variant="outlined"
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Box>
